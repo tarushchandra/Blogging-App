@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("./partials/head.ejs") %>
+    <title>Login</title>
+  </head>
+  <body>
+    <h1 class="text-center">Login</h1>
+
+    <div class="container mt-4">
+      <form action="/api/user/login" method="post">
+        <!-- email -->
+        <div class="mb-3">
+          <label for="email" class="form-label">Email address</label>
+          <input type="email" class="form-control" name="email" />
+        </div>
+
+        <!-- password -->
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" class="form-control" name="password" />
+        </div>
+
+        <!-- submit -->
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+
+    <% if (locals.error) { %>
+    <div class="alert alert-danger" role="alert"><%= locals.error %></div>
+    <% } %> <%- include("./partials/scripts.ejs")%>
+  </body>
+</html>

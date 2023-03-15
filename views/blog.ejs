@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("./partials/head.ejs") %>
+    <title><%= blog.title %></title>
+  </head>
+  <body>
+    <%- include("./partials/nav.ejs") %>
+
+    <!-- Blog Card -->
+    <div class="container mt-3 text-center">
+      <h1 class="text-center"><%= blog.title %></h1>
+      <img
+        src="<%= blog.coverImageURL %>"
+        style="width: 40vw; height: 50vh; object-fit: cover"
+        class="mb-2"
+      />
+      <p><%= blog.content %></p>
+      <div
+        class="d-flex mb-2"
+        style="justify-content: center; align-items: center; gap: 0.3em"
+      >
+        <img width="30px" src="<%= blog.createdBy.profileImageURL %>" />
+        <span><%= blog.createdBy.fullName %></span>
+      </div>
+    </div>
+
+    <!-- Comments -->
+    <div class="container mt-3 mb-3">
+      <h5>Total Comments: <%= comments.length %></h5>
+
+      <!-- Add Comment -->
+      <% if (locals.user) { %>
+      <form action="/api/comment/<%= blog._id %>" method="post">
+        <div class="mb-1">
+          <input
+            type="text"
+            class="form-control"
+            name="content"
+            placeholder="Add a Comment"
+          />
+        </div>
+        <!-- Submit -->
+        <button class="btn btn-primary">Add</button>
+      </form>
+      <% } %>
+
+      <!-- Rendering all Comments -->
+      <div class="container mt-3">
+        <% if (locals.comments) { %> <% comments.forEach(comment => { %>
+        <div>
+          <div class="d-flex mb-2" style="align-items: center; gap: 0.3em">
+            <img width="30px" src="<%= blog.createdBy.profileImageURL %>" />
+            <span style="font-weight: 700"
+              ><%= comment.createdBy.fullName %>:
+            </span>
+            <span><%= comment.content %></span>
+          </div>
+        </div>
+        <% }) %> <% } %>
+      </div>
+    </div>
+
+    <%- include("./partials/scripts.ejs")%>
+  </body>
+</html>

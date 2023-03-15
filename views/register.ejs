@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("./partials/head.ejs") %>
+    <title>Register</title>
+  </head>
+  <body>
+    <h1 class="text-center">Register</h1>
+
+    <div class="container mt-4">
+      <form action="/api/user/register" method="post">
+        <!-- fullName -->
+        <div class="mb-3">
+          <label for="fullName" class="form-label">Full Name</label>
+          <input type="text" class="form-control" name="fullName" />
+        </div>
+
+        <!-- email -->
+        <div class="mb-3">
+          <label for="email" class="form-label">Email address</label>
+          <input type="email" class="form-control" name="email" />
+        </div>
+
+        <!-- password -->
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" class="form-control" name="password" />
+        </div>
+
+        <!-- submit -->
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+
+    <%- include("./partials/scripts.ejs")%>
+  </body>
+</html>
